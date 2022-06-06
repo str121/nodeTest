@@ -3,7 +3,7 @@ const app = express()           // 가져온 express function 사용
 const port = 5000                 // 사용할 port number, 임의적으로 사용 가능
 const mongoose = require('mongoose')    // mongoose 어플리케이션 사용
 
-
+const config = require('./config/key')
 
 
 app.get('/', (req, res) => {
@@ -14,7 +14,7 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
 
-mongoose.connect('mongodb+srv://str121:1234@nodetest.uysaq.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
 	useNewUrlParser: true
     // , userUnifiedTopology: true, userCresteIndex: true, useFindAndModify: true   // 에러
 }).then(() => console.log('MongoDB Connected...'))
